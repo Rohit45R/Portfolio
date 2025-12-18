@@ -1,0 +1,80 @@
+/* ---------------------------------
+   CUSTOM CSS VARIABLES & BASE STYLES
+--------------------------------- */
+:root {
+    /* Dark Mode Defaults */
+    --bg-primary: #0b1120;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-neon: #00d2ff;
+    --card-bg: rgba(30, 41, 59, 0.6);
+    --card-shadow: 0 0 15px rgba(0, 210, 255, 0.3), 0 0 5px rgba(0, 210, 255, 0.1);
+}
+
+body.light-theme {
+    /* Light Mode Overrides */
+    --bg-primary: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --accent-neon: #3b82f6; /* A clean blue for light mode */
+    --card-bg: #ffffff;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* ---------------------------------
+   VISUAL EFFECTS (NEON & 3D)
+--------------------------------- */
+.neon-card {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--card-shadow);
+    transition: background-color 0.5s, box-shadow 0.5s, border 0.5s;
+}
+
+.neon-text {
+    color: var(--accent-neon);
+    text-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
+    transition: color 0.5s, text-shadow 0.5s;
+}
+
+/* ---------------------------------
+   ANIMATED BACKGROUND
+--------------------------------- */
+.swirling-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+.swirling-bg::before {
+    content: '';
+    position: absolute;
+    width: 150vw;
+    height: 150vh;
+    /* Dark Theme Gradient */
+    background: radial-gradient(circle at 10% 20%, #173f4b 0%, #0b1120 50%, #301f40 100%);
+    animation: swirl 20s infinite alternate;
+}
+body.light-theme .swirling-bg::before {
+    /* Light Theme Gradient */
+    background: radial-gradient(circle at 10% 20%, #dbeafe 0%, #f1f5f9 50%, #e0f2f1 100%);
+    animation: swirl 30s infinite alternate;
+}
+
+@keyframes swirl {
+    0% { transform: translate(-20%, -20%) rotate(0deg); }
+    100% { transform: translate(10%, 10%) rotate(5deg); }
+}
+
+/* The styles for progress bars were removed as requested. */
